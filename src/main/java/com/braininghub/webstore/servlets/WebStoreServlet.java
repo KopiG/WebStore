@@ -16,6 +16,7 @@ import java.io.IOException;
  */
 public class WebStoreServlet extends HttpServlet {
 
+    public static final String WARE_BEAN = "wareBean";
     private WareService wareService = new WareService();
 
 //    @Override
@@ -44,10 +45,14 @@ public class WebStoreServlet extends HttpServlet {
                 Integer.valueOf(request.getParameter("price")));
 
         boolean isSuccessfullyCreated = wareService.createWare(wareDTO);
-        WareBean wareBean = (WareBean) session.getAttribute("wareBean");
+        WareBean wareBean = (WareBean) session.getAttribute(WARE_BEAN);
+        if (wareBean == null) {
+            wareBean = new WareBean();
+            session.setAttribute(WARE_BEAN, wareBean);
+        }
         if (isSuccessfullyCreated) {
-            wareBean = (WareBean) session.getAttribute("wareBean");
             wareBean.setSuccessfullyCreated(true);
+            wareBean.setName(wareDTO.getName());
         } else {
             wareBean.setSuccessfullyCreated(false);
         }

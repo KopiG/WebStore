@@ -5,6 +5,7 @@ package com.braininghub.webstore.beans;
  */
 public class WareBean {
     private boolean successfullyCreated;
+    private String name;
 
     public boolean isSuccessfullyCreated() {
         return successfullyCreated;
@@ -12,5 +13,13 @@ public class WareBean {
 
     public void setSuccessfullyCreated(boolean successfullyCreated) {
         this.successfullyCreated = successfullyCreated;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

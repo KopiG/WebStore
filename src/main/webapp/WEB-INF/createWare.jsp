@@ -35,7 +35,7 @@
     <input type="submit" value="Create">
   </form>
 <c:if test="${wareBean.successfullyCreated}">
-  Ware has been successfully created
+  ${wareBean.name} has been successfully created
 </c:if>
 </body>
 </html>
