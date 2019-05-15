@@ -16,7 +16,18 @@ import java.io.IOException;
  */
 public class WebStoreServlet extends HttpServlet {
 
-    WareService wareService = new WareService();
+    private WareService wareService = new WareService();
+
+//    @Override
+//    protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        HttpSession session = request.getSession();
+//        WareBean wareBean = (WareBean) session.getAttribute("wareBean");
+//        if (wareBean == null) {
+//            wareBean = new WareBean();
+//            session.setAttribute("wareBean", wareBean);
+//        }
+//        super.service(request, response);
+//    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -27,11 +38,19 @@ public class WebStoreServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
+        HttpSession session = request.getSession();
         WareDTO wareDTO = new WareDTO(request.getParameter("codeKey"),
                 request.getParameter("name"), request.getParameter("description"),
                 Integer.valueOf(request.getParameter("price")));
 
-        wareService.createWare(wareDTO);
+        boolean isSuccessfullyCreated = wareService.createWare(wareDTO);
+        WareBean wareBean = (WareBean) session.getAttribute("wareBean");
+        if (isSuccessfullyCreated) {
+            wareBean = (WareBean) session.getAttribute("wareBean");
+            wareBean.setSuccessfullyCreated(true);
+        } else {
+            wareBean.setSuccessfullyCreated(false);
+        }
 
         response.sendRedirect(response.encodeRedirectURL(request.getRequestURI()));
     }

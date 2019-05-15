@@ -8,6 +8,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>Welcome to the WebStore Admin Page!</h1>
+    <a href="/createWare">Create a new Ware</a>
     </body>
 </html>

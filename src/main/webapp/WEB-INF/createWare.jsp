@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!-- Bean deklaráció -->
-<jsp:useBean id="wareBean" class="com.braininghub.webstore.beans.WareBean" scope="page" />
+<jsp:useBean id="wareBean" class="com.braininghub.webstore.beans.WareBean" scope="session" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,19 +16,26 @@
 </head>
 <body>
   <form method="post">
-    Codekey:<br>
-    <input type="text" name="codeKey">
+    <label for="codeKey">Codekey:</label>
     <br>
-    Name:<br>
-    <input type="text" name="name">
+    <input id="codeKey" type="text" name="codeKey">
     <br>
-    Description:<br>
-    <input type="text" name="description">
+    <label for="name">Name:</label>
     <br>
-    Price:<br>
-    <input type="number" name="price">
+    <input id="name" type="text" name="name">
+    <br>
+    <label for="name">Description:</label>
+    <br>
+    <input id="description" type="text" name="description">
+    <br>
+    <label for="price">Price:</label>
+    <br>
+    <input id="price" type="number" name="price">
     <br><br>
     <input type="submit" value="Create">
   </form>
+<c:if test="${wareBean.successfullyCreated}">
+  Ware has been successfully created
+</c:if>
 </body>
 </html>

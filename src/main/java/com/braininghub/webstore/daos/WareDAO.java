@@ -8,7 +8,8 @@ import java.sql.*;
  * Created by kopig on 2019. 05. 14..
  */
 public class WareDAO {
-    public static final String DBCONURL = "jdbc:mysql://localhost:3306/BHDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    public static final String DBCONURL = "jdbc:mysql://localhost:3306/BHDB";
+    //public static final String DBCONURL = "jdbc:mysql://localhost:3306/BHDB?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     public static final String USERNAME = "root";
     public static final String PASSWORD = "root";
 
@@ -57,7 +58,7 @@ public class WareDAO {
 
     public static void main(String[] args) {
         WareDAO dao = WareDAO.getInstance();
-        System.out.println(dao.createWare(new WareDTO("APPLE", "Apple",
-                "A delicious apple", 10)));
+        System.out.println(dao.createWare(new WareDTO("TEST", "Test",
+                "A test", 10)));
     }
 }
